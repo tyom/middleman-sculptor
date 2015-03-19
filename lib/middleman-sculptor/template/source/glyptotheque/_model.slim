@@ -1,0 +1,26 @@
+- local_url = current_page.metadata.page[:local_url]
+- url = local_url || current_page.url
+- title = current_page.metadata.page[:title] || locals[:title] # locals should be first but there's a bug
+- description = locals[:description] || current_page.metadata.page[:description]
+
+- current_model = current_resource.metadata.models[id]
+
+- isolated_url = !!extensions[:directory_indexes] ? url.sub(/\/$/, '/isolated') : url.sub(/\.html$/, "-#{id}-isolated.html")
+
+article.glypto-model
+  .glypto-model-stage
+    - if current_model.iframe
+      iframe src="#{url_for(isolated_url)}" height="0" width="100%" frameborder="0" scrolling="no" onload='javascript:resizeIframe(this);'
+    - else
+      figure = current_model.html
+
+  = partial 'glyptotheque/model-utils',
+    locals: { html: html, id: id, isolated_url: isolated_url }
+
+  - unless locals[:iframe]
+    - stylesheets = current_page.metadata.page[:stylesheet] || current_page.metadata.page[:stylesheets] || current_page.data[:stylesheet] || current_page.data[:stylesheets]
+    - javascripts = current_page.metadata.page[:javascript] || current_page.metadata.page[:javascripts] || current_page.data[:javascript] || current_page.data[:javascripts]
+    - if stylesheets
+      - content_for :stylesheets, include_stylesheets(stylesheets)
+    - if javascripts
+      - content_for :javascripts, include_javascripts(javascripts)

@@ -3,14 +3,18 @@
 ###################
 
 # With alternative layout
-page '/**', :layout => 'glyptotheque'
+page '/**',     layout: 'glyptotheque'
 # With no layout
-page "/glyptotheque/*", :layout => false, directory_index: false
-page '*.css',   :layout => false
-page '*.js',    :layout => false
-page '*.json',  :layout => false
+page "/glyptotheque/*", layout: false, directory_index: false
+page '*.css',   layout: false
+page '*.js',    layout: false
+page '*.json',  layout: false
+
+# Proxy default site index to Glyptotheque index template
+proxy 'index.html', 'glyptotheque/site-index.html'
 
 ready do
+  last_dir = nil
   # Prerender resources to populate models
   resources = resources_for('/', exclude_indexes: true, allow_hidden: true).each do |r|
     r.render
@@ -18,16 +22,28 @@ ready do
 
   # Create mappings for isolated component pages (iframe embeddable)
   resources.each do |r|
-    r.metadata.models.each do |id, model|
-      proxy "#{r.path.sub(r.ext, '')}-#{id}-isolated.html",
-        r.path,
-        layout: 'isolated',
-        id: id
+    # Create virtual index files
+    dir = File.dirname(r.path)
+    if last_dir != dir
+      proxy "#{dir}/index.html", 'glyptotheque/directory-index.html', locals: {
+        name: dir
+      }
+      last_dir = dir
+    end
+
+    if r.metadata[:models]
+      r.metadata.models.each do |id, model|
+        proxy "#{r.path.sub(r.ext, '')}-#{id}-isolated.html",
+          r.path,
+          layout: 'isolated',
+          id: id
+      end
     end
   end
 end
 
 activate :sculptor
+activate :syntax, css_class: 'codehilite'
 
 ###################
 # Helpers
@@ -42,14 +58,12 @@ set :css_dir, '<%= options[:css_dir] -%>'
 # Change the CSS directory
 # set :css_dir, "alternative_css_directory"
 <% end -%>
-
 <% if options[:js_dir] -%>
 set :js_dir, '<%= options[:js_dir] -%>'
 <% else -%>
 # Change the JS directory
 # set :js_dir, "alternative_js_directory"
 <% end -%>
-
 <% if options[:images_dir] -%>
 set :images_dir, '<%= options[:images_dir] -%>'
 <% else -%>
@@ -63,13 +77,7 @@ bowerrc_dir = JSON.parse(IO.read("#{root}/.bowerrc"))['directory']
 
 # Compass configuration
 compass_config do |config|
-  import_paths = %w(normalize.css)
-
-  import_paths.each do |path|
-    full_path = File.join(root, bowerrc_dir, path)
-    config.add_import_path(full_path)
-    config.add_import_path(Sass::CssImporter::Importer.new(full_path))
-  end
+  config.add_import_path File.join(root, bowerrc_dir, 'normalize.scss')
 
   config.sass_options = {
     quiet: true

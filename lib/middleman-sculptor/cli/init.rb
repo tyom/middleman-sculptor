@@ -1,12 +1,15 @@
 require 'middleman-core/cli'
 
-module Middleman::Sculptor::Cli
+module Middleman::Cli
   class Init < Thor
-    namespace :sculptor_init
-
-    desc "init TARGET [options]", 'Create new sculpture TARGET'
     def init(name='.')
-      p "Generating new project #{name}"
+      key = :sculptor
+      unless ::Middleman::Templates.registered.key?(key)
+        raise Thor::Error, "Unknown project template '#{key}'"
+      end
+
+      thor_group = ::Middleman::Templates.registered[key]
+      thor_group.new([name], options).invoke_all
     end
   end
 end

@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
-# encoding: utf-8
+
 $LOAD_PATH << File.expand_path('../lib', __FILE__)
 
-require 'middleman-sculptor/cli'
+require 'middleman-sculptor'
 
 Middleman::Sculptor::Cli::Base.start

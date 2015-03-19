@@ -2,7 +2,6 @@ require 'middleman-core/cli'
 
 require 'middleman-sculptor/cli/version'
 require 'middleman-sculptor/cli/init'
-# require 'middleman-sculptor/cli/server'
 
 module Middleman::Sculptor::Cli
   class Base < Thor
@@ -17,7 +16,8 @@ module Middleman::Sculptor::Cli
       @@middleman_classes << klass
     end
 
-    add_middleman_task Middleman::Cli::Server
+    add_middleman_task Middleman::Cli::Init
+    # add_middleman_task Middleman::Cli::Server
 
     def help(meth=nil, subcommand=false)
       if meth && !self.respond_to?(meth)
