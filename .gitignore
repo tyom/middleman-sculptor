@@ -1,0 +1,9 @@
+*.gem
+.bundle
+.config
+Gemfile.lock
+pkg/
+tmp
+build/
+.sass-cache
+.DS_Store
