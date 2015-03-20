@@ -12,6 +12,7 @@ page '*.json',  layout: false
 
 # Proxy default site index to Glyptotheque index template
 proxy 'index.html', 'glyptotheque/site-index.html'
+proxy 'sitemap.json', 'glyptotheque/sitemap.json'
 
 ready do
   last_dir = nil
