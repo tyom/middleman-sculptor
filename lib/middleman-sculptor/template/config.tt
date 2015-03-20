@@ -79,8 +79,6 @@ bowerrc_dir = JSON.parse(IO.read("#{root}/.bowerrc"))['directory']
 
 # Compass configuration
 compass_config do |config|
-  config.add_import_path File.join(root, bowerrc_dir, 'normalize.scss')
-
   config.sass_options = {
     quiet: true
   }
