@@ -1,6 +1,3 @@
-@import 'normalize';
-@import 'bourbon';
-
 * {
   &,
   &:before,
@@ -9,6 +6,13 @@
   }
 }
 
-body.glypto-model-stage {
-  padding: 1rem;
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  color: #343434;
+}
+
+button {
+  cursor: pointer;
 }

@@ -44,6 +44,7 @@ end
 
 activate :sculptor
 activate :syntax, css_class: 'codehilite'
+activate :autoprefixer
 
 ###################
 # Helpers

@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "private": "true",
   "dependencies": {
-    "normalize.scss": "*",
     "angular": "~1.2.16",
     "lodash": "*",
     "mousetrap": "~1.4.6",

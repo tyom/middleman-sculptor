@@ -1,4 +1,3 @@
-@import 'bourbon';
 @import 'pygments/github';
 
 .glypto-model {
@@ -14,7 +13,7 @@
 
     > figure,
     > iframe {
-      @include transition(300ms);
+      transition: 300ms;
       display: block;
       margin: 0;
     }
@@ -25,7 +24,7 @@
     }
 
     ._component {
-      @include transition(200ms max-width);
+      transition: 200ms max-width;
       overflow: hidden;
       padding: 5px;
 
