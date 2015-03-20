@@ -98,7 +98,7 @@ Slim::Engine.set_default_options :attr_list_delims => { '(' => ')', '[' => ']' }
 
 # Development-secific configuration
 configure :development do
-  activate :livereload
+  activate :livereload, no_swf: true
 end
 
 # Build-specific configuration
