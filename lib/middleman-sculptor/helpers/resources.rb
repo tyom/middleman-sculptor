@@ -31,9 +31,7 @@ module Middleman::Sculptor
       end
 
       def resource_tree(dir, ext: 'html', data_fields: [:title], exclude_indexes: false, sort_by: nil, ignore: nil)
-        res = resources_for(dir, ext: ext, exclude_indexes: exclude_indexes, sort_by: sort_by, ignore: ignore)
-        res
-          .select { |r| r.children.any? }
+        resources_for(dir, ext: ext, exclude_indexes: exclude_indexes, sort_by: sort_by, ignore: ignore)
           .map { |r| parse_resource(r, {
               ext: ext,
               data_fields: data_fields,
@@ -42,7 +40,7 @@ module Middleman::Sculptor
               ignore: ignore
             })
           }
-          .reject { |r| r.parent != '/' }  # Remove non-root directories from the root
+          .reject { |r| r[:parent] != '/' }  # Remove non-root directories from the root
       end
 
       def local_data(path)
@@ -114,6 +112,11 @@ module Middleman::Sculptor
         data = {}
         data[:path] = url_for("/#{r.path}")
         data[:url] = r.url
+
+        # Add parent to top-level pages (not containing `/` in path)
+        if /^((?!\/).)*$/.match r.path
+          data[:parent] = '/'
+        end
 
         if r.children.any?
           data[:children] = collect_resources(r.children, options).map { |c| parse_resource(c, options) }
