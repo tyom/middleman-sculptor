@@ -1,0 +1,10 @@
+.codehilite {
+  background: #e6e6e6;
+  padding: 10px;
+
+  // compensate for first new line
+  code {
+    display: inline-block;
+    margin-top: -1em;
+  }
+}
