@@ -25,7 +25,8 @@ ready do
   resources.each do |r|
     # Create virtual index files
     dir = File.dirname(r.path)
-    if last_dir != dir
+    index_exists = !!sitemap.find_resource_by_path("#{dir}/index.html")
+    if last_dir != dir && !index_exists
       proxy "#{dir}/index.html", 'glyptotheque/directory-index.html', locals: {
         name: dir
       }
