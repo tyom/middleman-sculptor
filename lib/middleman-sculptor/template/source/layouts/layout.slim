@@ -8,19 +8,6 @@ html ng-app=(yield_content(:ng_app))
     = stylesheet_link_tag '//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css'
     = yield_content :stylesheets
     = javascript_include_tag 'head-js'
-    javascript:
-      function resizeIframe(obj) {
-        var doc = obj.contentDocument;
-        // TODO: Improve iframe autosize
-        setTimeout(function() {
-          var height = Math.max(
-              doc.body.scrollHeight, doc.documentElement.scrollHeight,
-              doc.body.offsetHeight, doc.documentElement.offsetHeight,
-              doc.body.clientHeight, doc.documentElement.clientHeight
-          );
-          obj.style.height = height + 'px';
-        }, 200);
-      }
 
   body class="#{yield_content(:body_class)}"
 
