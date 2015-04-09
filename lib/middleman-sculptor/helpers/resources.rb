@@ -120,7 +120,9 @@ module Middleman::Sculptor
 
         if r.children.any?
           data[:children] = collect_resources(r.children, options).map { |c| parse_resource(c, options) }
-          data[:parent] = r.parent.url
+          if r.parent
+            data[:parent] = r.parent.url
+          end
         end
 
 
