@@ -2,7 +2,7 @@
 
 .glypto-model {
   margin: 20px 0;
-  box-shadow: 0 0 0 1px white, 0 0 0 2px rgba(black, .1);
+  border: 1px solid $light-grey;
 
   &:last-child {
     margin-bottom: 0;
@@ -10,6 +10,7 @@
 
   > .glypto-model-stage {
     position: relative;
+    padding: 1px;
 
     > figure,
     > iframe {

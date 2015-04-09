@@ -1,5 +1,5 @@
 .glypto-model-utils {
-  border-top: 1px solid rgba(black, .1);
+  border-top: 1px solid $light-grey;
 
   > menu {
     @include clearfix;
