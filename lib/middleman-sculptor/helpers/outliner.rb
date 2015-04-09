@@ -4,7 +4,8 @@ require 'nokogiri'
 module Middleman::Sculptor
   module Helpers
     module Outliner
-      def outline(html)
+      def outline(&block)
+        html = capture_html(&block)
         doc = Nokogiri::HTML.fragment(html, encoding='utf-8')
 
         elements = parse_elements(doc.children)
