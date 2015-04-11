@@ -13,6 +13,7 @@ html
 
     = current_model.html
 
+    = javascript_include_tag  'iframe-js'
     = yield_content :javascripts
     = include_javascripts(current_page.data.javascripts || current_page.data.javascript)
     = yield_content :post_body

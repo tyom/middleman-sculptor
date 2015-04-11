@@ -10,7 +10,7 @@
 article.glypto-model
   .glypto-model-stage
     - if current_model.iframe
-      iframe src="#{url_for(isolated_url)}" height="0" width="100%" frameborder="0" scrolling="no"
+      iframe id="iframe-#{id}" src="#{url_for(isolated_url)}" height="0" width="100%" frameborder="0" scrolling="no"
     - else
       figure = current_model.html
 
