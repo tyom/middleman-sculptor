@@ -42,7 +42,7 @@ module Middleman::Sculptor
         partial('glyptotheque/model', locals: options)
       end
 
-      def model_iframe(location=nil, options={}, &block)
+      def imodel(location=nil, options={}, &block)
         options[:iframe] = true
         model(location, options, &block)
       end
