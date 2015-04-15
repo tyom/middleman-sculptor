@@ -93,8 +93,8 @@ ready do
 end
 
 Slim::Engine.disable_option_validator!
-Slim::Engine.set_default_options :pretty => true
-Slim::Engine.set_default_options :attr_list_delims => { '(' => ')', '[' => ']' }
+Slim::Engine.set_options pretty: true
+Slim::Engine.set_options attr_list_delims: { '(' => ')', '[' => ']' }
 
 # Development-secific configuration
 configure :development do
