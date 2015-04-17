@@ -2,9 +2,12 @@
   background: $light-grey;
   padding: 10px;
 
-  // compensate for first new line
-  code {
-    display: inline-block;
-    margin-top: -1em;
+  // compensate for first new line when passing text into `code` helper
+  &.css,
+  &.scss {
+    code {
+      display: inline-block;
+      margin-top: -1em;
+    }
   }
 }
