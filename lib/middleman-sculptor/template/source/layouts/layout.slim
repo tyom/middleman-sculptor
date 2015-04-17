@@ -4,7 +4,6 @@ html ng-app=(yield_content(:ng_app))
     meta charset='utf-8'
     title = current_page.data.title || yield_content(:page_title) || resource_file(current_page)
     meta name='viewport' content='width=device-width'
-    = stylesheet_link_tag 'main'
     = stylesheet_link_tag '//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css'
     = yield_content :stylesheets
     = javascript_include_tag 'head-js'
