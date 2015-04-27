@@ -5,7 +5,8 @@ html
     title = current_page.data.title || yield_content(:page_title) || resource_file(current_page)
     meta name='viewport' content='width=device-width'
     = yield_content :stylesheets
-    = include_stylesheets(current_page.data.stylesheets || current_page.data.stylesheet)
+    - if current_resource.metadata.options.iframe
+      = include_stylesheets(current_page.data.stylesheets || current_page.data.stylesheet)
 
   body class="#{yield_content(:body_class)}"
     - id = current_resource.metadata.options.id
@@ -15,5 +16,6 @@ html
 
     = javascript_include_tag  'iframe-js'
     = yield_content :javascripts
-    = include_javascripts(current_page.data.javascripts || current_page.data.javascript)
+    - if current_resource.metadata.options.iframe
+      = include_javascripts(current_page.data.javascripts || current_page.data.javascript)
     = yield_content :post_body

@@ -38,6 +38,7 @@ ready do
         proxy "#{r.path.sub(r.ext, '')}-#{id}-isolated.html",
           r.path,
           layout: 'isolated',
+          iframe: model.iframe,
           id: id
       end
     end
