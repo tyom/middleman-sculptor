@@ -1,5 +1,5 @@
 module Middleman
   module Sculptor
-    VERSION = "0.5"
+    VERSION = "0.6"
   end
 end
