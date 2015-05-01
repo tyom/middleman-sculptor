@@ -9,14 +9,14 @@
 html,
 body {
   height: 100%;
+  background: $dark-grey;
+  color: white;
 }
 
 body {
-  background: $dark-grey;
   padding: 0;
   margin: 0;
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  color: #343434;
 }
 
 button {
@@ -24,12 +24,13 @@ button {
 }
 
 .glyptotheque {
-  padding: 45px 20px;
+  position: relative;
+  padding: 42px 20px;
   min-height: 100%;
   overflow: hidden;
   background: white;
+  color: #343434;
   box-shadow: -1px 0 0 rgba(black, .1);
-  position: relative;
 
   > header {
     margin: 0 0 30px;
@@ -56,19 +57,19 @@ button {
     box-shadow: none;
     border: 0;
   }
+}
 
-  .glypto-title {
-    font-weight: 400;
-    font-size: 24px;
-    margin: 0;
+.glypto-title {
+  font-size: 36px;
+  margin: 0;
+  letter-spacing: -.04em;
 
-    a {
-      color: #0070a8;
-      text-decoration: none;
+  a {
+    color: #0070a8;
+    text-decoration: none;
 
-      &:hover {
-        color: $hover-orange;
-      }
+    &:hover {
+      color: $hover-orange;
     }
   }
 }
