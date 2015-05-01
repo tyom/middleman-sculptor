@@ -8,8 +8,7 @@
 
   main.glyptotheque
     - if current_page.data.title
-      header
-        h1 = current_page.data.title
+      h1.glypto-title = current_page.data.title
     = yield
 
   javascript:

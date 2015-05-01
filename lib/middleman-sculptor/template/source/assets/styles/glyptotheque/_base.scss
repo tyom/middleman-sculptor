@@ -31,20 +31,6 @@ button {
   background: white;
   color: #343434;
   box-shadow: -1px 0 0 rgba(black, .1);
-
-  > header {
-    margin: 0 0 30px;
-    border-bottom: 1px solid #ccc;
-
-    h1 {
-      font-size: 28px;
-      font-weight: 400;
-      margin: 0;
-      padding-bottom: 4px;
-      border-bottom: 4px solid #ccc;
-      display: inline-block;
-    }
-  }
 }
 
 .glypto-section {
