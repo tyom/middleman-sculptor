@@ -25,7 +25,7 @@ button {
 
 .glyptotheque {
   position: relative;
-  padding: 42px 20px;
+  padding: 40px 20px;
   min-height: 100%;
   overflow: hidden;
   background: white;
@@ -34,20 +34,21 @@ button {
 }
 
 .glypto-section {
-  margin: 0 -20px 30px;
-  padding: 0 20px 30px;
-  border-bottom: 1px solid #ddd;
+  margin: 0 -20px 40px;
+  padding: 0 20px 40px;
+  border-bottom: 2px solid $dark-grey;
   box-shadow: 0 1px rgba(white, .4);
 
   &:last-child {
     box-shadow: none;
     border: 0;
+    margin-bottom: 0;
   }
 }
 
 .glypto-title {
-  font-size: 36px;
-  margin: 0;
+  font-size: 48px;
+  margin: 0 0 40px;
   letter-spacing: -.04em;
 
   a {
