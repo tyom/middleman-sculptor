@@ -48,9 +48,19 @@ button {
 
 .glyptotheque,
 .glypto-section {
-  > h2 {
-    margin: 1.6em 0 .5em;
+  > h2,
+  > h3,
+  > h4 {
+    margin: 1.1em 0 .5em;
+    font-size: 36px;
+  }
+
+  h3 {
     font-size: 28px;
+  }
+
+  h4 {
+    font-size: 24px;
   }
 }
 
