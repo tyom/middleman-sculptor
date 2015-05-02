@@ -25,7 +25,7 @@ button {
 
 .glyptotheque {
   position: relative;
-  padding: 40px 20px;
+  padding: 40px 30px;
   min-height: 100%;
   overflow: hidden;
   background: white;
@@ -34,15 +34,23 @@ button {
 }
 
 .glypto-section {
-  margin: 0 -20px 40px;
-  padding: 0 20px 40px;
-  border-bottom: 2px solid $dark-grey;
+  margin: 0 -30px 40px;
+  padding: 0 30px 40px;
+  border-bottom: 2px solid lighten($dark-grey, 20);
   box-shadow: 0 1px rgba(white, .4);
 
   &:last-child {
     box-shadow: none;
     border: 0;
     margin-bottom: 0;
+  }
+}
+
+.glyptotheque,
+.glypto-section {
+  > h2 {
+    margin: 1.6em 0 .5em;
+    font-size: 28px;
   }
 }
 

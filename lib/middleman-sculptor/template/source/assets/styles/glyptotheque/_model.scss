@@ -1,9 +1,21 @@
 @import 'pygments/github';
 
 .glypto-model {
-  margin: 20px 0;
+  margin: 40px 0 20px;
   border: 1px solid $light-grey;
   box-shadow: 0 0 0 3px #f6f6f6;
+
+  &:before {
+    content: 'EXAMPLE';
+    position: absolute;
+    margin-top: -19px;
+    margin-left: -4px;
+    font-size: 12px;
+    line-height: 12px;
+    color: #aaa;
+    background: #f6f6f6;
+    padding: 3px 10px;
+  }
 
   &:last-child {
     margin-bottom: 0;
@@ -13,15 +25,40 @@
     position: relative;
     padding: 1px;
 
+    &:before {
+      @include position(absolute, 0 0 0 0);
+      @include size(100px 12px);
+      content: 'Loading…';
+      line-height: 12px;
+      font-size: 12px;
+      text-transform: uppercase;
+      text-indent: 1em;
+      color: #ddd;
+      margin: auto;
+    }
+
     > figure,
     > iframe {
+      position: relative;
       display: block;
       margin: 0;
+      background: white;
     }
 
     > figure {
       @include clearfix;
       padding: 10px;
+    }
+
+    > iframe {
+      transition: 200ms ease-out;
+      width: 100%;
+      height: 60px;
+      opacity: 0;
+
+      &[style*="height"] {
+        opacity: 1;
+      }
     }
 
     ._component {
