@@ -1,3 +1,7 @@
+- unless current_page.data.title
+  - if current_page.metadata.locals[:name]
+    h1.glypto-title = current_page.metadata.locals.name
+
 - resources_for(current_page.url, exclude_indexes: true, sort_by: :nav_order).each do |r|
 
   - current_page.add_metadata({ page: { \
