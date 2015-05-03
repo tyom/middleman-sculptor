@@ -32,7 +32,7 @@ ready do
     index_exists = !!sitemap.find_resource_by_path("#{dir}/index.html")
     if last_dir != dir && !index_exists
       proxy "#{dir}/index.html", 'glyptotheque/directory-index.html', locals: {
-        name: dir
+        name: dir.upcase
       }
       last_dir = dir
     end

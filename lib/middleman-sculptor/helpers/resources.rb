@@ -135,7 +135,7 @@ module Middleman::Sculptor
         options[:data_fields].each do |field|
           data[field] = r.data[field]
           if field == :title && !r.data.title
-            data[field] = resource_dir(r)
+            data[field] = resource_dir(r).upcase
           end
         end
         data
