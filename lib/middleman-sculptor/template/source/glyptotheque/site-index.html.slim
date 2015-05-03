@@ -1,5 +1,6 @@
 - if resources_for('/').empty?
-  h1 Go ahead, create some models
-  p: code sculptor create hello
+  h1 Site is empty, create some pages
 - else
-  = partial 'glyptotheque/directory-index'
+  h1.glypto-title = site_title
+  - main_sections.each do |section|
+    h2 = link_to section.metadata.locals.name, section.path

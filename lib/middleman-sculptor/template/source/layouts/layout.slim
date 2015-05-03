@@ -2,7 +2,13 @@ doctype html
 html ng-app=(yield_content(:ng_app))
   head
     meta charset='utf-8'
-    title = current_page.data.title || yield_content(:page_title) || resource_file(current_page)
+    title
+      - if current_page.metadata.locals[:name]
+        => current_page.metadata.locals[:name]
+      - else
+        => current_page.data.title || yield_content(:page_title) || resource_file(current_page)
+      - if current_page.data.title || current_page.metadata.locals[:name]
+        | › #{site_title}
     meta name='viewport' content='width=device-width'
     = stylesheet_link_tag '//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css'
     = yield_content :stylesheets

@@ -10,6 +10,8 @@ page '*.css',   layout: false
 page '*.js',    layout: false
 page '*.json',  layout: false
 
+set :site_title, 'Glyptotheque'
+
 ready do
   # Proxy default site index to Glyptotheque index template
   unless sitemap.find_resource_by_path '/index.html'
