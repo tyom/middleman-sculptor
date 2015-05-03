@@ -10,11 +10,13 @@ page '*.css',   layout: false
 page '*.js',    layout: false
 page '*.json',  layout: false
 
-# Proxy default site index to Glyptotheque index template
-proxy 'index.html', 'glyptotheque/site-index.html'
-proxy 'sitemap.json', 'glyptotheque/sitemap.json'
-
 ready do
+  # Proxy default site index to Glyptotheque index template
+  unless sitemap.find_resource_by_path '/index.html'
+    proxy 'index.html', 'glyptotheque/site-index.html'
+  end
+  proxy 'sitemap.json', 'glyptotheque/sitemap.json'
+
   last_dir = nil
   # Prerender resources to populate models
   resources = resources_for('/', exclude_indexes: true, allow_hidden: true).each do |r|
