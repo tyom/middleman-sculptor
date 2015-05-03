@@ -1,7 +1,7 @@
 @import 'pygments/github';
 
 .glypto-model {
-  $_transition: 400ms ease-out;
+  $_transition: 400ms ease-out 300ms;
 
   transition: $_transition;
   margin: 30px -10px 20px;
