@@ -15,7 +15,7 @@
     margin-left: -$glypto-nav-width;
 
     > .glypto-nav-toggle {
-      margin-right: -41px;
+      margin-right: -35px;
       opacity: .7;
       background: none;
 
@@ -32,9 +32,12 @@
   ._logo {
     font-weight: bold;
     padding: 0 10px;
-    line-height: 50px;
+    line-height: 45px;
     font-size: 16px;
     display: inline-block;
+    outline: none;
+    color: #aaa;
+    background: none;
 
     &:hover,
     &:focus {
@@ -76,12 +79,12 @@
 
   > .glypto-nav-toggle {
     @include size(25px);
-    transition: margin 360ms;
+    transition: margin 360ms ease-out;
     padding: 0;
     background: none;
     border: 0;
     float: right;
-    margin: 15px 10px 0 0;
+    margin: 10px 7px 0 0;
     position: relative;
     z-index: 1;
     cursor: pointer;
@@ -175,6 +178,11 @@
 
   li.s-selected > a {
     font-weight: 500;
-    background: black;
+    background: linear-gradient(58deg, rgba(black, .6), rgba(black, .1));
+
+    &:active,
+    &:focus {
+      background: black;
+    }
   }
 }
