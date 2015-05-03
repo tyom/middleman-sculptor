@@ -43,6 +43,12 @@ module Middleman::Sculptor
           .reject { |r| r[:parent] != '/' }  # Remove non-root directories from the root
       end
 
+      def main_sections
+        resources_for('/').select do |r|
+          r if r.metadata.locals[:name]
+        end
+      end
+
       def local_data(path)
         current_path =  current_resource.path
         if current_resource.metadata.page.has_key? :local_url
