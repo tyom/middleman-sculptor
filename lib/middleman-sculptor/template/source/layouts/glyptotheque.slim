@@ -1,12 +1,19 @@
 - content_for :page_title,  site_title
 - content_for :ng_app,      'glyptotheque'
-- content_for :stylesheets,  stylesheet_link_tag('glyptotheque')
+- content_for :stylesheets, stylesheet_link_tag('glyptotheque')
+
+- current_section = current_page.metadata.locals[:section]
+- if current_section
+  - content_for :body_class,  "section-#{current_section[:slug]}"
 
 = wrap_layout :layout do
   - if resource_tree('/').any?
     = partial 'glyptotheque/nav'
 
   main.glyptotheque
+    - if current_page.parent
+      .glypto-breadcrumbs
+        = link_to current_page.parent.metadata.locals.section.title, current_page.parent.url
     - if current_page.data.title
       h1.glypto-title = current_page.data.title
     = yield
