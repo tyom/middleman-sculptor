@@ -11,12 +11,17 @@
     = partial 'glyptotheque/nav'
 
   main.glyptotheque
-    - if current_page.parent
-      .glypto-breadcrumbs
-        = link_to current_page.parent.metadata.locals.section.title, current_page.parent.url
-    - if current_page.data.title
-      h1.glypto-title = current_page.data.title
-    = yield
+    header.glypto-header
+      .glypto-container
+        - if current_page.parent
+          .glypto-breadcrumbs
+            = link_to current_page.parent.metadata.locals.section.title, current_page.parent.url
+
+        - if current_page.data.title
+          h1.glypto-title = current_page.data.title
+        - elsif current_page.metadata.locals[:section]
+          h1.glypto-title = current_page.metadata.locals.section.title
+    .glypto-container = yield
 
   javascript:
     APP_CONTEXT = {
