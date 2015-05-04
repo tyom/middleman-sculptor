@@ -97,10 +97,12 @@ button {
 
   .glypto-title {
     margin: 0;
+    line-height: 1;
   }
 }
 
 .glypto-breadcrumbs {
+  position: absolute;
   transition: 160ms;
   margin-top: -30px;
   font-weight: bold;

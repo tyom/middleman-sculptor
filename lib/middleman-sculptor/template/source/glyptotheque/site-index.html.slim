@@ -1,5 +1,5 @@
 - if resources_for('/').empty?
   h1 Site is empty, create some pages
 - else
-  - main_sections.each do |section|
-    h2.glypto-title = link_to section.metadata.locals.section.title, section.path
+  - main_sections.each do |r|
+    h2.glypto-title = link_to get_section_of_resource(r).title, r.url
