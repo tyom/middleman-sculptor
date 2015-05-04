@@ -1,6 +1,6 @@
 - unless current_page.data.title
-  - if current_page.metadata.locals[:name]
-    h1.glypto-title = current_page.metadata.locals.name
+  - if current_page.metadata.locals[:section]
+    h1.glypto-title = current_page.metadata.locals.section.title
 
 - resources_for(current_page.url, exclude_indexes: true, sort_by: :nav_order).each do |r|
 

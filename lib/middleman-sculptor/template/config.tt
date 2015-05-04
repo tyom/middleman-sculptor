@@ -15,7 +15,12 @@ set :site_title, 'Glyptotheque'
 ready do
   # Proxy default site index to Glyptotheque index template
   unless sitemap.find_resource_by_path '/index.html'
-    proxy 'index.html', 'glyptotheque/site-index.html'
+    proxy 'index.html', 'glyptotheque/site-index.html', locals: {
+      section: {
+        title: site_title,
+        slug: 'index'
+      }
+    }
   end
   proxy 'sitemap.json', 'glyptotheque/sitemap.json'
 
@@ -29,10 +34,14 @@ ready do
   resources.each do |r|
     # Create virtual index files
     dir = File.dirname(r.path)
+    section_slug = dir.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '-')
     index_exists = !!sitemap.find_resource_by_path("#{dir}/index.html")
     if last_dir != dir && !index_exists
       proxy "#{dir}/index.html", 'glyptotheque/directory-index.html', locals: {
-        name: dir.upcase
+        section: {
+          title: dir.upcase,
+          slug: dir.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '-')
+        }
       }
       last_dir = dir
     end

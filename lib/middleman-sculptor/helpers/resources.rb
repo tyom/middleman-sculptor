@@ -45,7 +45,7 @@ module Middleman::Sculptor
 
       def main_sections
         resources_for('/').select do |r|
-          r if r.metadata.locals[:name]
+          r if r.parent.url == '/'
         end
       end
 
@@ -131,6 +131,13 @@ module Middleman::Sculptor
           end
         end
 
+        dir = File.dirname(r.path)
+        r.add_metadata(locals: {
+          section: {
+            title: dir.upcase,
+            slug: dir.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '-')
+          }
+        })
 
         options[:data_fields].each do |field|
           data[field] = r.data[field]
