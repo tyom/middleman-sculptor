@@ -3,4 +3,4 @@
 - else
   h1.glypto-title = site_title
   - main_sections.each do |section|
-    h2 = link_to section.metadata.locals.name, section.path
+    h2.glypto-title = link_to section.metadata.locals.section.title, section.path
