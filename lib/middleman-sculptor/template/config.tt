@@ -10,7 +10,7 @@ page '*.css',   layout: false
 page '*.js',    layout: false
 page '*.json',  layout: false
 
-set :site_title, 'Glyptotheque'
+set :site_title, 'Styleguide'
 
 ready do
   # Proxy default site index to Glyptotheque index template
