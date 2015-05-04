@@ -6,12 +6,13 @@
 }
 
 .glypto-nav {
-  transition: 120ms ease-out;
+  transition: 120ms ease-in;
   -webkit-font-smoothing: antialiased;
   color: #ddd;
   font-size: 14px;
 
   &.s-hidden {
+    transition: 120ms ease-out;
     margin-left: -$glypto-nav-width;
 
     > .glypto-nav-toggle {
@@ -120,11 +121,13 @@
 
     a {
       transition: 50ms;
+      color: #ddd;
 
       &:hover,
       &:focus {
         transition: none;
         background: rgba(white, .07);
+        color: white;
       }
 
       &:active {
