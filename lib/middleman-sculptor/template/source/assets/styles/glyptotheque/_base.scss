@@ -34,15 +34,23 @@ button {
 }
 
 .glypto-section {
-  margin: 0 -30px 40px;
-  padding: 0 30px 40px;
-  border-bottom: 2px solid lighten($dark-grey, 50);
-  box-shadow: 0 1px rgba(white, .4);
+  margin: 0 -10px 40px;
+  padding: 0 10px 40px;
+
+  &:after {
+    @include position(absolute, null 0 null 0);
+    content: '';
+    background: lighten($dark-grey, 55);
+    height: 3px;
+    margin-top: 39px;
+  }
 
   &:last-child {
-    box-shadow: none;
-    border: 0;
     margin-bottom: 0;
+
+    &:after {
+      content: none;
+    }
   }
 }
 
