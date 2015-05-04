@@ -1,7 +1,7 @@
 @import 'pygments/github';
 
 .glypto-model {
-  $_transition: 400ms ease-out 300ms;
+  $_transition: 400ms ease-out 700ms;
 
   transition: $_transition;
   margin: 30px -10px 20px;
@@ -39,8 +39,16 @@
     position: relative;
     padding: 1px;
 
-    &:hover + .glypto-model-utils {
+    & + .glypto-model-utils {
       transition: $_transition;
+      transition-delay: 0;
+
+      &:hover {
+        transition: 120ms ease-out;
+      }
+    }
+
+    &:hover + .glypto-model-utils {
       opacity: 0;
     }
 
