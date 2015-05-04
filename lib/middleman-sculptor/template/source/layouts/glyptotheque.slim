@@ -15,7 +15,10 @@
       .glypto-container
         - if current_page.parent
           .glypto-breadcrumbs
-            = link_to current_page.parent.metadata.locals.section.title, current_page.parent.url
+            => link_to site_title, '/'
+            - if current_page.parent.url != '/'
+              span.sep ›
+              =< link_to current_page.parent.metadata.locals.section.title, current_page.parent.url
 
         - if current_page.data.title
           h1.glypto-title = current_page.data.title
