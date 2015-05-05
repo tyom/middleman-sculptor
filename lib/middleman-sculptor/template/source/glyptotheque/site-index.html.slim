@@ -5,6 +5,6 @@
     ul.glypto-section-list
       - main_sections.each do |r|
         li.glypto-section-list-item
-          = link_to r.url
+          = link_to r.path
             h2.glypto-section-name = get_section_of_resource(r).title
             .glypto-section-meta = pluralize(resources_for(r.url).count, 'item')

@@ -167,7 +167,7 @@ module Middleman::Sculptor
         hierarchy.collect {|page|
           link_to(
             page.data.title || get_section_of_resource(page).title,
-            "#{page.url}"
+            "/#{page.path}"
           )
         }.join(" <span class='sep'>#{separator}</span> ")
       end
