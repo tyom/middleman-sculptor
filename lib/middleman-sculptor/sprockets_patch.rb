@@ -31,17 +31,17 @@ module Middleman
       # Intercept requests to /javascripts and /stylesheets and pass to sprockets
       our_sprockets = self.environment
 
-      [app.config[:js_dir], app.config[:css_dir], app.config[:images_dir], app.config[:fonts_dir]].each do |dir|
-        app.map("/#{dir}") { run our_sprockets }
-      end
+      # # PATCH: Run Sprockets on any `scripts/styles` directory in `source`
+      paths = [app.config[:js_dir], app.config[:css_dir], app.config[:images_dir], app.config[:fonts_dir]]
+      extended_paths = Dir.glob("#{app.source}/**/*.{scss,js}")
+        .map { |p| Pathname.new(p).dirname.to_s }
+        .map { |p| p.sub("#{app.source}/", '') }
+        .select{|p| p.match /styles|scripts$/ }
+        .reject{|p| p.match /assets|glyptotheque/ }
 
-      # PATCH: Pass any `scripts` directory in `source` through Sprockets
-      Dir.glob("#{app.root}/**/scripts").each do |dir|
-        relative_dir = (dir.split('/') - (app.root.split('/') << app.source)).join('/')
-        if app.config[:js_dir] != relative_dir
-          our_sprockets.append_path(dir) # Append custom JS path into our sprockets path
-          app.map("/#{relative_dir}") { run our_sprockets }
-        end
+      (paths + extended_paths).uniq.each do |dir|
+        our_sprockets.append_path(dir)
+        app.map("/#{dir}") { run our_sprockets }
       end
     end
   end
