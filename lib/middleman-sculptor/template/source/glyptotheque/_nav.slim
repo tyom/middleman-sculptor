@@ -13,7 +13,7 @@ glypto-menu
 script type="text/ng-template" id="glyptotheque/menu.html"
   nav.glypto-nav ng-class="{'s-hidden' : navIsHidden}"
     button.glypto-nav-toggle ng-click="toggle()" title="Toggle menu: Command + Shift + E"
-    = link_to yield_content(:page_title), url_for('/index.html'), class: '_logo'
+    = link_to site_title, url_for('/index.html'), class: '_logo'
     .search: input.mousetrap(ng-model="search" type="search" placeholder="Filter (/ to focus)" glypto-search)
 
     glypto-menu-tree items="items" filter="search"

@@ -15,12 +15,7 @@ set :site_title, 'Styleguide'
 ready do
   # Proxy default site index to Glyptotheque index template
   unless sitemap.find_resource_by_path '/index.html'
-    proxy 'index.html', 'glyptotheque/site-index.html', locals: {
-      section: {
-        title: site_title,
-        slug: 'index'
-      }
-    }
+    proxy 'index.html', 'glyptotheque/site-index.html'
   end
   proxy 'sitemap.json', 'glyptotheque/sitemap.json'
 
@@ -35,23 +30,25 @@ ready do
     # Create virtual index files
     dir = File.dirname(r.path)
     index_exists = !!sitemap.find_resource_by_path("#{dir}/index.html")
+
     if last_dir != dir && !index_exists
       proxy "#{dir}/index.html", 'glyptotheque/directory-index.html', locals: {
-        section: {
-          title: dir.upcase,
-          slug: dir.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '-')
-        }
+        section: get_section_of_resource(r)
       }
       last_dir = dir
     end
 
     if r.metadata[:models]
+      dir = File.dirname(r.path)
       r.metadata.models.each do |id, model|
         proxy "#{r.path.sub(r.ext, '')}-#{id}-isolated.html",
           r.path,
           layout: 'isolated',
           iframe: model.iframe,
-          id: id
+          id: id,
+          locals: {
+            section: get_section_of_resource(r)
+          }
       end
     end
   end

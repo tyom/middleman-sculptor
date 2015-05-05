@@ -1,8 +1,0 @@
-.glypto-breadcrumbs
-  => link_to site_title, '/'
-  - if current_page.parent.url != '/'
-    span.sep ›
-    - if current_page.parent.data.title
-      =< link_to current_page.parent.data.title, current_page.parent.url
-    - else
-      =< link_to current_page.parent.metadata.locals.section.title, current_page.parent.url

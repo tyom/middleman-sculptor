@@ -131,12 +131,8 @@ module Middleman::Sculptor
           end
         end
 
-        dir = File.dirname(r.path)
         r.add_metadata(locals: {
-          section: {
-            title: dir.upcase,
-            slug: dir.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '-')
-          }
+          section: get_section_of_resource(r)
         })
 
         options[:data_fields].each do |field|
@@ -162,6 +158,41 @@ module Middleman::Sculptor
       def relative_dir(path, *args)
         relative_path = args ? args.join('/') : ''
         Pathname(path).dirname.join(relative_path)
+      end
+
+      def breadcrumbs(page=current_page, separator="›", remove_current=true)
+        hierarchy = [page]
+        hierarchy.unshift hierarchy.first.parent while hierarchy.first.parent
+        hierarchy.pop if remove_current
+        hierarchy.collect {|page|
+          link_to(
+            page.data.title || get_section_of_resource(page).title,
+            "#{page.url}"
+          )
+        }.join(" <span class='sep'>#{separator}</span> ")
+      end
+
+      def page_title(page=current_page, separator='›')
+        title = strip_tags(breadcrumbs(current_page, separator, false))
+          .split(separator)
+          .reverse
+          .join(" #{separator} ")
+      end
+
+      def get_section_of_resource(resource)
+        dir = File.dirname(resource.path)
+        title = dir.upcase
+
+        if resource.url == '/'
+          title = resource.data.title || site_title
+        elsif resource.metadata.locals[:section]
+          title = resource.data.title if resource.data.title
+        end
+
+        {
+          title: title,
+          slug: dir.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '-')
+        }
       end
     end
   end

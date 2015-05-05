@@ -10,6 +10,7 @@
   -webkit-font-smoothing: antialiased;
   color: #ddd;
   font-size: 14px;
+  min-height: 100%;
 
   &.s-hidden {
     transition: 120ms ease-out;
@@ -18,10 +19,6 @@
     > .glypto-nav-toggle {
       margin-right: -35px;
       opacity: .7;
-
-      &:before {
-        box-shadow: 0 2px 0 1px black, 0 7px 0 1px black, 0 12px 0 1px black;
-      }
 
       &:active {
         background: rgba(black, .2);
