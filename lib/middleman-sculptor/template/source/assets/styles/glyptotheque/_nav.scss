@@ -10,6 +10,7 @@
   -webkit-font-smoothing: antialiased;
   color: #ddd;
   font-size: 14px;
+  min-height: 100%;
 
   &.s-hidden {
     transition: 120ms ease-out;
