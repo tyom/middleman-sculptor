@@ -20,7 +20,13 @@ article.glypto-model
   - unless locals[:iframe]
     - stylesheets = current_page.metadata.page[:stylesheet] || current_page.metadata.page[:stylesheets] || current_page.data[:stylesheet] || current_page.data[:stylesheets]
     - javascripts = current_page.metadata.page[:javascript] || current_page.metadata.page[:javascripts] || current_page.data[:javascript] || current_page.data[:javascripts]
-    - if stylesheets && include_stylesheets(stylesheets) != yield_content(:stylesheets)
+
+    - current_js = include_javascripts(javascripts)
+    - included_js = yield_content(:javascripts)
+
+    - if include_stylesheets(stylesheets) != yield_content(:stylesheets)
       - content_for :stylesheets, include_stylesheets(stylesheets)
-    - if javascripts && include_stylesheets(javascripts) != yield_content(:javascripts)
-      - content_for :javascripts, include_javascripts(javascripts)
+
+    - if current_js
+      - unless (included_js && included_js.match(current_js))
+        - content_for :javascripts, current_js
