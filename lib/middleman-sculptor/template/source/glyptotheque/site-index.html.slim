@@ -1,5 +1,10 @@
 - if resources_for('/').empty?
   h1 Site is empty, create some pages
 - else
-  - main_sections.each do |r|
-    h2.glypto-title = link_to get_section_of_resource(r).title, r.url
+  - if main_sections.any?
+    ul.glypto-section-list
+      - main_sections.each do |r|
+        li.glypto-section-list-item
+          = link_to r.url
+            h2.glypto-section-name = get_section_of_resource(r).title
+            .glypto-section-meta = pluralize(resources_for(r.url).count, 'item')

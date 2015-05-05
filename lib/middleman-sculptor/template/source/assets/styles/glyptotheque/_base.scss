@@ -131,3 +131,46 @@ button {
     margin: 0 em(4);
   }
 }
+
+
+.glypto-section-list {
+  @include clearfix;
+  background: #eee;
+  padding: 5px;
+  margin: 0;
+  list-style: none;
+}
+
+.glypto-section-list-item {
+  padding: 5px;
+
+  @include breakpoint(540px) {
+    float: left;
+    width: 50%;
+  }
+
+  a:link,
+  a:hover,
+  a:visited {
+    display: block;
+    padding: em(20);
+    background: white;
+    text-decoration: none;
+    border: 1px solid transparent;
+    color: inherit;
+    min-height: 160px;
+
+    &:hover {
+      border-color: $dark-grey;
+    }
+  }
+
+  .glypto-section-name {
+    font-size: em(30);
+    margin: 0;
+  }
+
+  .glypto-section-meta {
+    color: #aaa;
+  }
+}
