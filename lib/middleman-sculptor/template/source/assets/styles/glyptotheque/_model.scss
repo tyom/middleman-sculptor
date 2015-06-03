@@ -37,7 +37,7 @@
 
   > .glypto-model-stage {
     position: relative;
-    padding: 1px;
+    padding: 10px;
 
     & + .glypto-model-utils {
       transition: $_transition;
@@ -74,7 +74,6 @@
 
     > figure {
       @include clearfix;
-      padding: 10px;
     }
 
     > iframe {
