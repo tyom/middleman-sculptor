@@ -24,8 +24,12 @@ article.glypto-model
     - current_js = include_javascripts(javascripts)
     - included_js = yield_content(:javascripts)
 
-    - if include_stylesheets(stylesheets) != yield_content(:stylesheets)
-      - content_for :stylesheets, include_stylesheets(stylesheets)
+    - current_css = include_stylesheets(stylesheets)
+    - included_css = yield_content(:stylesheets)
+
+    - if current_css
+      - unless (included_css && included_css.match(current_css))
+        - content_for :stylesheets, include_stylesheets(stylesheets)
 
     - if current_js
       - unless (included_js && included_js.match(current_js))
