@@ -7,6 +7,8 @@ html
     = yield_content :stylesheets
     - if current_resource.metadata.options.iframe
       = include_stylesheets(current_page.data.stylesheets || current_page.data.stylesheet)
+    - if current_resource.data.isolation_styles
+      style = current_resource.data.isolation_styles
 
   body class="#{yield_content(:body_class)}"
     - id = current_resource.metadata.options.id
