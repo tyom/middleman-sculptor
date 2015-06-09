@@ -34,6 +34,7 @@ module Middleman::Sculptor
         models = {}
         models[id] = {
           iframe: options[:iframe] || false,
+          stylesheet: options[:stylesheet] || nil,
           html: html
         }
 

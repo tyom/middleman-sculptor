@@ -4,7 +4,9 @@
   - if main_sections.any?
     ul.glypto-section-list
       - main_sections.each do |r|
-        li.glypto-section-list-item
+        li.glypto-section-list-item class="#{r.children.any? ? 'm-folder' : nil}"
           = link_to r.path
-            h2.glypto-section-name = get_section_of_resource(r).title
-            .glypto-section-meta = pluralize(resources_for(r.url).count, 'item')
+            h2.glypto-section-name
+              = get_section_of_resource(r).title
+            - if r.children.any?
+              .glypto-section-meta = pluralize(resources_for(r.url).count, 'item')
