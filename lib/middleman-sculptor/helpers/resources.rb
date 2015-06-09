@@ -44,9 +44,9 @@ module Middleman::Sculptor
       end
 
       def main_sections
-        resources_for('/').select do |r|
-          r if r.parent.url == '/'
-        end
+        resources_for('/')
+          .select {|r| r.parent.url == '/' }
+          .reject {|r| r.url == '/./'}
       end
 
       def local_data(path)
