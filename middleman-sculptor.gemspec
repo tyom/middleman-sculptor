@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 1.9.3'
 
   s.add_dependency 'middleman-core', '~> 3.3'
+  s.add_dependency 'middleman-sprockets', '~> 3.4'
   s.add_dependency 'rest-client', '>= 1.7.3'
   s.add_dependency "nokogiri", [">= 1.6", "< 2.0"]
   s.add_dependency 'oj', '~> 2.10.2'
