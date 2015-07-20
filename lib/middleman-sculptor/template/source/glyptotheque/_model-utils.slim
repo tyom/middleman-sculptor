@@ -13,5 +13,5 @@
         i.fa.fa-external-link
 
   ._container
-    ._panel.glypto-model-source ng-class="{'__shown': show == 'source'}" = code('html') { html }
-    ._panel.glypto-model-outline ng-class="{'__shown': show == 'outline'}" = outline { html }
+    ._panel.glypto-model-source ng-class="{'__shown': show == 'source'}" = code('html') { html.strip }
+    ._panel.glypto-model-outline ng-class="{'__shown': show == 'outline'}" = outline { html.strip }
