@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 
-$LOAD_PATH << File.expand_path('../lib', __FILE__)
+require 'middleman-core/load_paths'
+require 'middleman-sculptor/cli'
 
-require 'middleman-sculptor'
-
-Middleman::Sculptor::Cli::Base.start
+Middleman::Sculptor::Cli::Base.start(ARGV)

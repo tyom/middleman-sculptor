@@ -18,12 +18,13 @@ Gem::Specification.new do |s|
   s.test_files = s.files.grep(%r{^(test|spec|features)/})
 
   s.require_paths = ['lib']
-  s.required_ruby_version = '>= 1.9.3'
+  s.required_ruby_version = '>= 2.0.0'
 
-  s.add_dependency 'middleman-core', '~> 3.3'
-  s.add_dependency 'middleman-sprockets', '~> 3.4'
+  s.add_dependency 'middleman-cli', '>= 4.0.0.rc.1'
+  s.add_dependency 'middleman-core', '>= 4.0.0.rc.1'
+  s.add_dependency 'middleman-sprockets', '>= 4.0.0.rc.1'
   s.add_dependency 'rest-client', '>= 1.7.3'
-  s.add_dependency "nokogiri", [">= 1.6", "< 2.0"]
+  s.add_dependency 'nokogiri', ['>= 1.6', '< 2.0']
   s.add_dependency 'oj', '~> 2.10.2'
   s.add_dependency 'slim', '>= 3.0'
   s.add_dependency 'pry'
