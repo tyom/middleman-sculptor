@@ -2,6 +2,7 @@
 
 $LOAD_PATH << File.expand_path('../lib', __FILE__)
 
-require 'middleman-sculptor'
+require "middleman-core/load_paths"
+require 'middleman-sculptor/cli'
 
 Middleman::Sculptor::Cli::Base.start
