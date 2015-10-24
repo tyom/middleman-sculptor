@@ -1,7 +1,8 @@
 - content_for :page_title,  page_title
 - content_for :ng_app,      'glyptotheque'
-- content_for :stylesheets, stylesheet_link_tag('glyptotheque')
+- content_for :stylesheets, stylesheet_link_tag('/glyptotheque/styles/main')
 - content_for :body_class,  "section-#{get_section_of_resource(current_page).slug}"
+- content_for :javascripts,  javascript_include_tag('glyptotheque/scripts/glyptotheque.bundle')
 
 = wrap_layout :layout do
   - if resource_tree('/').any?

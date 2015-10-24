@@ -65,42 +65,11 @@ activate :autoprefixer
 # helpers do
 # end
 
-<% if options[:css_dir] -%>
-set :css_dir, '<%= options[:css_dir] -%>'
-<% else -%>
-# Change the CSS directory
-# set :css_dir, "alternative_css_directory"
-<% end -%>
-<% if options[:js_dir] -%>
-set :js_dir, '<%= options[:js_dir] -%>'
-<% else -%>
-# Change the JS directory
-# set :js_dir, "alternative_js_directory"
-<% end -%>
-<% if options[:images_dir] -%>
-set :images_dir, '<%= options[:images_dir] -%>'
-<% else -%>
-# Change the images directory
-# set :images_dir, "alternative_image_directory"
-<% end -%>
+set :css_dir, 'assets/styles'
+set :js_dir, 'assets/scripts'
+set :images_dir, 'assets/images'
 
 set :relative_links, true
-
-bowerrc_dir = JSON.parse(IO.read("#{root}/.bowerrc"))['directory']
-
-# Compass configuration
-compass_config do |config|
-  config.sass_options = {
-    quiet: true
-  }
-  # For Style Guide CSS sources
-  # config.output_style = :expanded
-end
-
-# Sprockets
-ready do
-  sprockets.append_path(File.join(root, bowerrc_dir))
-end
 
 Slim::Engine.disable_option_validator!
 Slim::Engine.set_options pretty: true

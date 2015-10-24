@@ -1,13 +1,10 @@
 # Middleman Sculptor
 
-Middleman extension for creation of interactive styleguides and code examples.
+[Middleman](https://middlemanapp.com/) extension for creation of interactive styleguides and code examples.
 
 ## Installation
 
-node is required to run Bower.
-
     $ gem install middleman-sculptor
-    $ npm install -g bower
 
 ## Usage
 
@@ -21,9 +18,35 @@ To start a new project:
 
     $ middleman-sculptor init project-name
 
-This will create a new directory `project-name` with templates for a new styleguide. It also installs Ruby and Bower dependencies.
+This will create a new directory `project-name` with templates for a new styleguide. It also installs Ruby and NPM dependencies.
 
 Aliases: `i` and `n`.
+
+### Configuring external Sass load paths and assets
+
+Middleman Sculptor uses [Webpack](https://webpack.github.io/) to bundle up its JavaScript. This allows writing JS in CommonJS or AMD style. Then JS is passed to Asset Pipiline to be served.
+
+To use an NPM JS Library just `npm install` it and Webpack will pick it up. To use Sass library or make images discoverable by Asset Pipeline (e.g. [Mojular GOV.UK Elements](https://github.com/mojular/govuk-elements)) add relevant paths to `Sass.load_paths` and Sprockets in `config.rb`:
+
+```ruby
+# Sass load paths
+govuk_elements_path = File.join(root, 'node_modules/mojular-govuk-elements')
+JSON.parse(IO.read("#{govuk_elements_path}/package.json"))['paths']['sass'].each do |p|
+  Sass.load_paths << File.expand_path("#{govuk_elements_path}/#{p}")
+end
+
+# Sprockets
+ready do
+  moj_images = File.join(root, 'node_modules', 'mojular-govuk-elements', 'assets', 'images')
+  sprockets.append_path moj_images
+
+  Dir.chdir(moj_images) do
+    Dir['**/*.{js,png,jpg}'].each do |asset|
+      sprockets.import_asset(asset)
+    end
+  end
+end
+```
 
 #### Project structure
 
@@ -36,11 +59,23 @@ To update Sculptor in an existing project run `middleman-sculptor init` in the p
 
 ### Running local server
 
+Bundle up JavaScript using Webpack:
+
+    $ node_modules/.bin/webpack
+
+Or install it globally `npm install -g webpack` and run using `webpack` command. You can leave it running in another terminal tab `webpack --watch`.
+
 During the development run local [Middleman server](https://middlemanapp.com/basics/development_cycle/):
 
     $ middleman server
 
 `server` is optional and is the default command so can be omitted.
+
+*Recommended* way is to run both using [Foreman](https://github.com/ddollar/foreman) (included in Gemfile):
+
+    $ foreman start
+
+This will launch Middleman server and Webpack watch together.
 
 
 ## Creating a styleguide

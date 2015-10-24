@@ -19,18 +19,16 @@ module Middleman
         template 'config.tt', File.join(location, 'config.rb')
         copy_file '.gitignore', File.join(location, '.gitignore')
         copy_file '.editorconfig', File.join(location, '.editorconfig')
-        copy_file '.bowerrc', File.join(location, '.bowerrc')
-        copy_file 'bower.json', File.join(location, 'bower.json')
+        copy_file 'Procfile', File.join(location, 'Procfile')
+        copy_file 'package.json', File.join(location, 'package.json')
+        copy_file 'webpack.config.js', File.join(location, 'webpack.config.js')
 
         directory 'source', File.join(location, 'source')
         directory 'data', File.join(location, 'data')
       end
 
-      def handle_bower
-        # Install Bower if necessary
-        run("command -v bower >/dev/null 2>&1 || npm install -g bower")
-        # Install dependencies
-        run("cd #{location}; bower install")
+      def run_npm
+        run("cd #{location}; npm install")
       end
     end
   end
