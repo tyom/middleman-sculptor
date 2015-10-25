@@ -19,7 +19,7 @@ html
   body class="#{yield_content(:body_class)}"
     = current_model.html
 
-    = javascript_include_tag  'glyptotheque/scripts/iframe-content-window.bundle'
+    = javascript_include_tag  'iframe-content-window.bundle'
     = yield_content :javascripts
     - if current_resource.metadata.options.iframe
       = include_javascripts(current_model[:javascript] || current_page.data.javascripts || current_page.data.javascript)
