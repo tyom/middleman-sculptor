@@ -6,10 +6,11 @@ html ng-app=(yield_content(:ng_app))
     meta name='viewport' content='width=device-width'
     = stylesheet_link_tag '//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css'
     = yield_content :stylesheets
-    = javascript_include_tag 'glyptotheque/scripts/store.bundle'
+    = javascript_include_tag 'assets/scripts/store.bundle'
 
   body class="#{yield_content(:body_class)}"
     = yield
 
     = yield_content :javascripts
+    = javascript_include_tag 'main.bundle'
     = yield_content :post_body
